@@ -5,13 +5,13 @@ export default {
     fields: [
         {
             name: 'name',
-            title: 'Name',
-            type: 'string'
+            type: 'string',
+            title: 'Name'
         },
         {
             name: 'ingredienttype',
-            title: 'Ingredienttype',
             type: 'string',
+            title: 'Ingredienttype',
             options: {
                 list: [
                     { title: 'Vegetable', value: 'vegetable' },
@@ -22,10 +22,10 @@ export default {
         },
         {
             name: 'image',
-            title: 'Image',
-            type: 'image'
+            type: 'image',
+            title: 'Image'
         }]
-        ,
+    ,
     preview: {
         select: {
             title: 'name',
