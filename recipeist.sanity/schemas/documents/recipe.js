@@ -7,6 +7,7 @@ export default {
         { name: 'image', type: 'mainImage', title: 'Image' },
         { name: 'mainintro', type: 'text', title: 'Main Intro' },
         { name: 'ingredients', type: 'array', title: 'Ingredients', of: [{ type: 'ingredients' }] },
-        { name: 'mainbody', type: 'array', title: 'Main Body', of: [{ type: 'block' }] }
+        { name: 'mainbody', type: 'array', title: 'Main Body', of: [{ type: 'block' }] },
+        { name: 'cuisinetype', type: 'array', title: 'Cuisinetype', of: [{ type: 'reference', to: [{ type: 'cuisine' }] }] }
     ]
 }

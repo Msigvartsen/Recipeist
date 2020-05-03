@@ -8,6 +8,7 @@ import ingredient from './documents/ingredient';
 import ingredients from './objects/ingredients';
 import recipe from './documents/recipe';
 import mainImage from './documents/mainImage';
+import cuisine from './documents/cuisine';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,6 +20,7 @@ export default createSchema({
     ingredient,
     ingredients,
     recipe,
-    mainImage
+    mainImage,
+    cuisine
   ])
 })
