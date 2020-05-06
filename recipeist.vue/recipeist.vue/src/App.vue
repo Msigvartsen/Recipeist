@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Recipe v-for="r in recipes" :key="r._id" :recipe="r" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Recipe from "./components/Recipe.vue";
+import { client } from "./sanity";
+
+var query = '*[_type == "recipe" && !(_id in path("drafts.**"))]';
 
 export default {
+  mounted() {
+    client.fetch(query).then(ex => (this.recipes = ex));
+  },
   name: "App",
   components: {
-    HelloWorld
+    Recipe
+  },
+  data: function() {
+    return { recipes: "" };
   }
 };
 </script>
@@ -24,5 +32,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  background-color: pink;
 }
 </style>
