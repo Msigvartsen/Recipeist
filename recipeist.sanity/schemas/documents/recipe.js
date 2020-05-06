@@ -17,5 +17,6 @@ export default {
         { name: 'ingredients', type: 'array', title: 'Ingredients', of: [{ type: 'ingredients' }] },
         { name: 'mainbody', type: 'array', title: 'Main Body', of: [{ type: 'block' }] },
         { name: 'cuisinetype', type: 'array', title: 'Cuisinetype', of: [{ type: 'reference', to: [{ type: 'cuisine' }] }] },
+        { name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title' } }
     ]
 }

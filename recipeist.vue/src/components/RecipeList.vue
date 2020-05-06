@@ -1,6 +1,6 @@
 <template>
   <section>
-    <router-link v-for="r in recipes" :key="r._id" :to="`/recipes/${r._id}`">{{r.title}}</router-link>
+    <router-link v-for="r in recipes" :key="r._id" :to="`/recipes/${r.slug.current}`">{{r.title}}</router-link>
   </section>
 </template>
 

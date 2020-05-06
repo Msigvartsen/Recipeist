@@ -10,14 +10,15 @@
 import { client } from "../sanity";
 import { urlFor } from "../sanity";
 
+var query = `*[_type == "recipe" && slug.current == $slug][0]`;
+
 export default {
   data: function() {
     return { recipe: Object };
   },
   mounted() {
-    console.log(this.$route.params.id);
-    var query = `*[_type == "recipe" && _id == "${this.$route.params.id}"][0]`;
-    client.fetch(query).then(x => (this.recipe = x));
+    const params = { slug: this.$route.params.id };
+    client.fetch(query, params).then(x => (this.recipe = x));
   },
   methods: {
     urlFor(image) {
