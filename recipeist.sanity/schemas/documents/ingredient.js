@@ -1,3 +1,4 @@
+import React from 'react'
 export default {
     name: 'ingredient',
     title: 'Ingredient',
@@ -24,9 +25,19 @@ export default {
             }
         },
         {
-            name: 'image',
-            type: 'image',
-            title: 'Image'
+            name: 'imageUrl',
+            type: 'string',
+            title: 'Bilde-URL'
+        },
+        {
+            name: 'imageAltText',
+            type: 'string',
+            title: 'Bildebeskrivelse'
+        },
+        {
+            name: 'translation',
+            type: 'string',
+            title: 'Oversettelse'
         },
         {
             name: 'slug',
@@ -45,7 +56,13 @@ export default {
     preview: {
         select: {
             title: 'name',
-            media: 'image'
-        }
+            imageUrl: 'imageUrl',
+        },
+        prepare(selection) {
+            const { title, imageUrl } = selection
+            let result = { title }
+            if (imageUrl) result.media = <img src={imageUrl} />
+            return result
+        },
     }
 }

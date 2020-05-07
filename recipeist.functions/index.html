@@ -1,11 +1,18 @@
 <h1>Food importer</h1>
 <div id="app">
-  <ul v-if="ingredients">
-    <li v-for="(ingredient, i) in ingredients" :key="i">
+  <label>
+    Search
+    <input type="text" v-model="query" />
+  </label>
+  <ol v-if="ingredients">
+    <li v-for="(ingredient, i) in filteredIngredients" :key="i">
       {{ingredient.name}}
-      <button @click="importFood(ingredient)">import</button>
+      <button @click="importFood(ingredient)" :disabled="isLoading">import</button>
     </li>
-  </ul>
+  </ol>
+
+  <br />
+  <pre>TODO: jobb som automatiserer dette når det er stabilt</pre>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -13,19 +20,32 @@
   var app = new Vue({
     el: '#app',
     data: {
-      ingredients: []
+      isLoading: false,
+      ingredients: [],
+      query: ""
+    },
+    computed: {
+      filteredIngredients() {
+        if (!this.ingredients) return []
+        return this.ingredients.filter(x => x.name.toLowerCase().includes(this.query.toLowerCase())).slice(0, 20)
+      }
     },
     mounted() {
       fetch("/api/getFood")
         .then(x => x.json())
-        .then(x => this.ingredients = x.foods)
+        .then(x => {
+          this.ingredients = x.foods
+        })
     },
     methods: {
       importFood(food) {
+        this.isLoading = true;
         console.log("importing", food)
         fetch("/api/importFood", { method: "POST", body: JSON.stringify(food), headers: { "content-type": "application/json" } })
           .then(x => x.json())
-          .then(x => console.log(x))
+          .then(x => {
+            this.isLoading = false;
+          })
       }
     }
   })

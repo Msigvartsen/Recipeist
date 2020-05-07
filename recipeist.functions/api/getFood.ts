@@ -9,16 +9,21 @@ export default async (req: NowRequest, res: NowResponse) => {
     const foodUrl = `https://www.matvaretabellen.no/api/${api}?language=no&version=73`;
     const foodResponse = await fetch(foodUrl);
     if (foodResponse.status !== 200) {
-        res.json({ status: foodResponse.status, error: foodResponse.statusText })
+        const error = foodResponse.statusText;
+        console.log("foodResponse", error)
+        res.json({ status: foodResponse.status, error })
         return;
     }
 
     const foodData = await foodResponse.json() || {};
     if (!foodData.foods) {
-        res.json({ status: 404, error: "No food found" })
+        const error = "No food found";
+        console.log("foodData", error)
+        res.json({ status: 404, error })
         return;
     }
 
-    res.json({ status: 200, message: "Here's the first 10 foods", foods: foodData.foods.slice(0, 10) })
-    return;
+    console.log(`Found ${foodData.foods.length} foods. Returning 1000 of them to avoit hitting Zeit's 6mb limit`)
+
+    res.json({ status: 200, foods: foodData.foods.slice(0, 1000) })
 }
