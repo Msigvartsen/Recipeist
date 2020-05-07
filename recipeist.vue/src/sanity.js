@@ -1,5 +1,5 @@
+import sanityClient from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-const sanityClient = require('@sanity/client');
 
 export const client = sanityClient({
   projectId: 'zykf8mvo',
@@ -8,5 +8,5 @@ export const client = sanityClient({
   useCdn: true // `false` if you want to ensure fresh data
 });
 
-export const builder = imageUrlBuilder(client);
-export const urlFor = (image) => builder.image(image);
+const builder = imageUrlBuilder(client);
+export const sanityImage = (image) => builder.image(image);

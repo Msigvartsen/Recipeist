@@ -1,6 +1,10 @@
 <template>
   <section>
-    <router-link v-for="r in recipes" :key="r._id" :to="`/recipes/${r.slug.current}`">{{r.title}}</router-link>
+    <ul>
+      <li v-for="r in recipes" :key="r._id">
+        <router-link :to="`/recipes/${r.slug.current}`">{{r.title}}</router-link>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -10,7 +14,7 @@ import { client } from "../sanity";
 var query = '*[_type == "recipe" && !(_id in path("drafts.**"))]';
 
 export default {
-  data: function() {
+  data() {
     return { recipes: [] };
   },
   mounted() {

@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "npm run serve"
+    "start": "npm run serve",
+    "deploy": "now --prod"
   },
   "dependencies": {
     "@sanity/client": "^1.149.7",

@@ -1,31 +1,26 @@
 <template>
   <div>
     <h1>{{recipe.title}}</h1>
-    <img :src="urlFor(recipe.image)" />
+    <img :src="recipe.imageUrl" :alt="recipe.title" />
     <router-link to="/recipes">Tilbake til oppskrifter</router-link>
   </div>
 </template>
 
 <script>
 import { client } from "../sanity";
-import { urlFor } from "../sanity";
 
-var query = `*[_type == "recipe" && slug.current == $slug][0]`;
+var query = `*[_type == "recipe" && slug.current == $slug][0]{
+  title,
+  "imageUrl": image.asset->url
+}`;
 
 export default {
-  data: function() {
+  data() {
     return { recipe: Object };
   },
   mounted() {
     const params = { slug: this.$route.params.id };
     client.fetch(query, params).then(x => (this.recipe = x));
-  },
-  methods: {
-    urlFor(image) {
-      return urlFor(image)
-        .width(200)
-        .url();
-    }
   }
 };
 </script>

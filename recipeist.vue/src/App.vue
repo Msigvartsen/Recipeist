@@ -1,15 +1,16 @@
 <template>
   <div id="app">
-    <nav>header</nav>
-    <router-view></router-view>
+    <nav>
+      header
+      <router-link to="/">home link</router-link>
+    </nav>
+    <router-view />
     <footer>footer</footer>
   </div>
 </template>
 
 <script>
-export default {
-  components: {}
-};
+export default {};
 </script>
 
 <style>
