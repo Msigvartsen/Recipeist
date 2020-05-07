@@ -27,7 +27,21 @@ export default {
             name: 'image',
             type: 'image',
             title: 'Image'
-        }],
+        },
+        {
+            name: 'slug',
+            type: 'slug',
+            title: 'Slug',
+            options: {
+                source: "name"
+            }
+        },
+        {
+            name: 'foodData',
+            type: 'text',
+            title: 'Data fra Matvaretabellen',
+            readOnly: true
+        },],
     preview: {
         select: {
             title: 'name',

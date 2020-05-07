@@ -1,0 +1,32 @@
+<h1>Food importer</h1>
+<div id="app">
+  <ul v-if="ingredients">
+    <li v-for="(ingredient, i) in ingredients" :key="i">
+      {{ingredient.name}}
+      <button @click="importFood(ingredient)">import</button>
+    </li>
+  </ul>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      ingredients: []
+    },
+    mounted() {
+      fetch("/api/getFood")
+        .then(x => x.json())
+        .then(x => this.ingredients = x.foods)
+    },
+    methods: {
+      importFood(food) {
+        console.log("importing", food)
+        fetch("/api/importFood", { method: "POST", body: JSON.stringify(food), headers: { "content-type": "application/json" } })
+          .then(x => x.json())
+          .then(x => console.log(x))
+      }
+    }
+  })
+</script>

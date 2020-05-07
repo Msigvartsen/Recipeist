@@ -4,4 +4,5 @@ out
 .DS_Store
 .vscode
 .vs
-recipeist.vue/recipeist.vue/package-lock.json
+.now
+package-lock.json
