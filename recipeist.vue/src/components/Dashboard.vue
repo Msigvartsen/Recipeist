@@ -3,13 +3,9 @@
     <h1>{{siteSettings.name}}</h1>
     <img :src="siteSettings.imageUrl" :alt="siteSettings.alt" />
     <section>
-      Newest Recipes:
+      Nyeste oppskrifter:
       <div v-for="r in recipeList" :key="r._id">{{r.title}}</div>
     </section>
-
-    <!--Move to header component -->
-    <router-link :to="`/recipes`">Recipes</router-link>
-    <router-link :to="`/ingredients`">Ingredienser</router-link>
   </main>
 </template>
 

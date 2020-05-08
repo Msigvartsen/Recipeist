@@ -1,12 +1,12 @@
 import Vue from "vue";
-import VueRouter from "vue-router"
+import VueRouter from "vue-router";
 
 import Dashboard from "./components/Dashboard.vue";
 import NotFound from "./components/NotFound.vue";
 import RecipeList from "./components/RecipeList.vue";
 import IngredientList from "./components/IngredientList.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   { path: '/', component: Dashboard },
@@ -15,9 +15,9 @@ const routes = [
   { path: '/ingredients', component: IngredientList },
   { path: '/ingredients/:slug', component: () => import("./components/Ingredient.vue") },
   { path: '*', component: NotFound },
-]
+];
 
 export const router = new VueRouter({
   mode: 'history',
   routes
-})
+});
