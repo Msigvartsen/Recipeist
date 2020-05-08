@@ -1,15 +1,10 @@
 {
   "name": "recipeist.functions",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
   "scripts": {
     "start": "now dev --listen 4000",
     "deploy": "now --prod"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@google-cloud/translate": "^5.3.0",
     "@now/node": "^1.5.1",

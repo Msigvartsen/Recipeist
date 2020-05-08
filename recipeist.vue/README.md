@@ -1,24 +1,16 @@
 # recipeist.vue
 
-## Project setup
+## install
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm i
 ```
 
-### Compiles and minifies for production
+## develop
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm start
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## deploy
+```
+npm run deploy
+```

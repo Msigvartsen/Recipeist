@@ -1,4 +1,4 @@
-# recipeist.sanity
+# recipeist.functions
 
 ## install
 ```
