@@ -1,33 +1,31 @@
+import React from "react"
 export default {
-    name: 'ingredients',
-    title: 'Ingredients',
-    type: 'object',
-    fields: [
-        { name: 'ingredient', type: 'reference', title: 'Ingredient', to: [{ type: 'ingredient' }] },
-        { name: 'quantity', type: 'number', title: 'Quantity' },
-        {
-            name: 'unit', type: 'string', title: 'Unit', options: {
-                list: [
-                    { title: 'g', name: 'g' },
-                    { title: 'dl', name: 'dl' }
-                ]
-            }
-        }
-    ],
-    preview: {
-        select: {
-            title: 'ingredient.name',
-            quantity: 'quantity',
-            unit: 'unit',
-            image: 'ingredient.image'
-        },
-        prepare(selection) {
-            const { title, quantity, unit, image } = selection;
-            return {
-                title: title,
-                subtitle: `${quantity} ${unit}`,
-                media: image
-            }
-        }
+  name: "ingredientInstance",
+  title: "Ingrediens med antall",
+  type: "object",
+  fields: [
+    {
+      name: "ingredient",
+      type: "reference",
+      title: "Ingrediens",
+      to: [{ type: "ingredient" }]
+    },
+    { name: "quantity", type: "number", title: "Antall" }
+  ],
+  preview: {
+    select: {
+      title: "ingredient.name",
+      quantity: "quantity",
+      unit: "ingredient.unit",
+      imageUrl: "ingredient.imageUrl"
+    },
+    prepare(selection) {
+      const { title, quantity, unit, imageUrl } = selection
+      return {
+        title: title,
+        subtitle: `${quantity} ${unit}`,
+        media: <img src={imageUrl} />
+      }
     }
+  }
 }

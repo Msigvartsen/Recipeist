@@ -7,3 +7,17 @@
 #+#    #+# #+#       #+#    #+#    #+#     #+#        #+#            #+#    #+#    #+#    #+#
 ###    ### ########## ######## ########### ###        ########## ########### ########     ###
 ```
+
+## VS Code
+
+#### Must have extensions:
+
+- Prettier - Code formatter
+- Vetur
+
+#### settings.json
+
+```js
+"editor.formatOnSave": true,
+"editor.defaultFormatter": "esbenp.prettier-vscode"
+```
