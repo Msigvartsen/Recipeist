@@ -1,7 +1,7 @@
 import React from "react"
 export default {
-  name: "ingredient",
-  title: "Ingrediens",
+  name: "ingredientGroup",
+  title: "Ingrediensgruppe",
   type: "document",
   fields: [
     {
@@ -10,19 +10,9 @@ export default {
       title: "Navn"
     },
     {
-      name: "unit",
+      name: "parentId",
       type: "string",
-      title: "Enhet"
-    },
-    {
-      name: "portion",
-      type: "number",
-      title: "Porsjon"
-    },
-    {
-      name: "groupId",
-      type: "string",
-      title: "Gruppenummer"
+      title: "Hovedkategori id"
     },
     {
       name: "imageUrl",
@@ -42,16 +32,7 @@ export default {
     {
       name: "slug",
       type: "slug",
-      title: "Slug",
-      options: {
-        source: "name"
-      }
-    },
-    {
-      name: "foodData",
-      type: "text",
-      title: "Data fra Matvaretabellen",
-      readOnly: true
+      title: "Slug"
     }
   ],
   preview: {

@@ -3,9 +3,10 @@ import schemaTypes from "all:part:@sanity/base/schema-type"
 
 import siteSettings from "./documents/siteSettings"
 import ingredient from "./documents/ingredient"
+import ingredientGroup from "./documents/ingredientGroup"
 import recipe from "./documents/recipe"
 import cuisine from "./documents/cuisine"
-const documents = [ingredient, recipe, cuisine, siteSettings]
+const documents = [ingredient, ingredientGroup, recipe, cuisine, siteSettings]
 
 import mainImage from "./objects/mainImage"
 import ingredientWithQuantity from "./objects/ingredientWithQuantity"
