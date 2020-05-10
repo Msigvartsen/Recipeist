@@ -13,7 +13,8 @@
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "food-table"
+    "food-table",
+    "asset-source-unsplash"
   ],
   "env": {
     "development": {
