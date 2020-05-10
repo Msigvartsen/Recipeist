@@ -23,7 +23,7 @@
         >
       </li>
     </ul>
-    <block-content :blocks="recipe.mainbody" />
+    <block-content v-if="recipe.mainbody" :blocks="recipe.mainbody" />
     <router-link to="/recipes">Tilbake til oppskrifter</router-link>
   </div>
 </template>
