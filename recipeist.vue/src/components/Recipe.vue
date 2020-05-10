@@ -3,27 +3,32 @@
     <h1>{{ recipe.title }}</h1>
 
     <figure v-if="recipe.image" class="image-container">
-      <img :src="recipe.image.url" :alt="recipe.image.alt" class="recipe-image" />
+      <img
+        :src="recipe.image.url"
+        :alt="recipe.image.alt"
+        class="recipe-image"
+      />
       <caption class="image-caption">
         {{
-        recipe.image.caption
+          recipe.image.caption
         }}
       </caption>
     </figure>
 
-    <p>Ingredienser:</p>
-
-    <section>
+    <section class="ingredients">
       <ul v-if="recipe.ingredients" class="recipe-list">
         <li v-for="(x, i) in recipe.ingredients" :key="i">
           {{ x.quantity }} {{ x.ingredient.unit }}
           <router-link
             v-if="x.ingredient.slug"
             :to="`/ingredients/${x.ingredient.slug.current}`"
-          >{{ x.ingredient.name }}</router-link>
+          >
+            {{ x.ingredient.name }}
+          </router-link>
         </li>
       </ul>
     </section>
+
     <block-content v-if="recipe.mainbody" :blocks="recipe.mainbody" />
 
     <router-link to="/recipes">Tilbake til oppskrifter</router-link>
@@ -86,5 +91,9 @@ export default {
 }
 .recipe-list li {
   color: red;
+}
+
+ol {
+  text-align: left;
 }
 </style>
