@@ -19,7 +19,7 @@ export default {
     {
       name: "portion",
       type: "number",
-      title: "Porsjon"
+      title: "Porsjon (denne kan umulig stemme 🤔)"
     },
     {
       name: "groupId",

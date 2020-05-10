@@ -12,14 +12,13 @@ export default {
       title: "Ingredienser",
       of: [{ type: "ingredientWithQuantity" }]
     },
-    { name: "mainIntro", type: "text", title: "Oppsummering" },
-    { name: "image", type: "mainImage", title: "Hovedbilde" },
     {
       name: "mainbody",
       type: "array",
       title: "Brødtekst 🍞😁",
       of: [{ type: "block" }]
     },
+    { name: "image", type: "mainImage", title: "Hovedbilde" },
     {
       name: "cuisines",
       type: "array",

@@ -7,7 +7,9 @@
   <ol v-if="ingredients">
     <li v-for="(ingredient, i) in filteredIngredients" :key="i">
       {{ingredient.name}}
-      <button @click="importFood(ingredient)" :disabled="isLoading">import</button>
+      <button @click="importFood(ingredient)" :disabled="isLoading">
+        import
+      </button>
     </li>
   </ol>
 
@@ -18,7 +20,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
   var app = new Vue({
-    el: '#app',
+    el: "#app",
     data: {
       isLoading: false,
       ingredients: [],
@@ -27,24 +29,36 @@
     computed: {
       filteredIngredients() {
         if (!this.ingredients) return []
-        return this.ingredients.filter(x => x.name.toLowerCase().includes(this.query.toLowerCase())).slice(0, 20)
+        return this.ingredients
+          .filter(x => x.name.toLowerCase().includes(this.query.toLowerCase()))
+          .slice(0, 30)
       }
     },
     mounted() {
       fetch("/api/getFood")
         .then(x => x.json())
         .then(x => {
-          this.ingredients = x.foods
+          this.ingredients = [...this.ingredients, ...x.foods]
+        })
+
+      fetch("/api/getFood?next=1")
+        .then(x => x.json())
+        .then(x => {
+          this.ingredients = [...this.ingredients, ...x.foods]
         })
     },
     methods: {
       importFood(food) {
-        this.isLoading = true;
+        this.isLoading = true
         console.log("importing", food)
-        fetch("/api/importFood", { method: "POST", body: JSON.stringify(food), headers: { "content-type": "application/json" } })
+        fetch("/api/importFood", {
+          method: "POST",
+          body: JSON.stringify(food),
+          headers: { "content-type": "application/json" }
+        })
           .then(x => x.json())
           .then(x => {
-            this.isLoading = false;
+            this.isLoading = false
           })
       }
     }
