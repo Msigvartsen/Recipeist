@@ -16,7 +16,7 @@
 
     <ul>
       <li v-for="r in filteredRecipes" :key="r._id">
-        <router-link :to="`/recipes/${r.slug.current}`">
+        <router-link v-if="r.slug" :to="`/recipes/${r.slug.current}`">
           {{ r.title }}
         </router-link>
       </li>

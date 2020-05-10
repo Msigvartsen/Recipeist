@@ -17,7 +17,10 @@
     Ingredienser
     <ul>
       <li v-for="ingredient in filteredIngredients" :key="ingredient._id">
-        <router-link :to="`/ingredients/${ingredient.slug.current}`">
+        <router-link
+          v-if="ingredient.slug"
+          :to="`/ingredients/${ingredient.slug.current}`"
+        >
           {{ ingredient.name }} {{ ingredient.groupId }}
         </router-link>
       </li>
