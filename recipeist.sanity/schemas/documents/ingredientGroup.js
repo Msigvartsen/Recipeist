@@ -1,8 +1,10 @@
 import React from "react"
+import { TiThLargeOutline } from "react-icons/ti"
 export default {
   name: "ingredientGroup",
   title: "Ingrediensgruppe",
   type: "document",
+  icon: TiThLargeOutline,
   fields: [
     {
       name: "name",

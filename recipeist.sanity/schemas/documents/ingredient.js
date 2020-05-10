@@ -1,8 +1,10 @@
 import React from "react"
+import { GiBananaPeeled } from "react-icons/gi"
 export default {
   name: "ingredient",
   title: "Ingrediens",
   type: "document",
+  icon: GiBananaPeeled,
   fields: [
     {
       name: "name",

@@ -6,7 +6,7 @@ import ingredient from "./documents/ingredient"
 import ingredientGroup from "./documents/ingredientGroup"
 import recipe from "./documents/recipe"
 import cuisine from "./documents/cuisine"
-const documents = [ingredient, ingredientGroup, recipe, cuisine, siteSettings]
+const documents = [recipe, cuisine, ingredient, ingredientGroup, siteSettings]
 
 import mainImage from "./objects/mainImage"
 import ingredientWithQuantity from "./objects/ingredientWithQuantity"
