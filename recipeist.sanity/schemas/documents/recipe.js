@@ -19,9 +19,9 @@ export default {
       of: [{ type: "block" }]
     },
     {
-      name: "cuisinetype",
+      name: "cuisines",
       type: "array",
-      title: "Cuisinetype",
+      title: "Kusiner 😅",
       of: [{ type: "reference", to: [{ type: "cuisine" }] }]
     },
     { name: "slug", type: "slug", title: "Slug", options: { source: "title" } }
