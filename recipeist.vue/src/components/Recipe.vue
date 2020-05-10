@@ -19,12 +19,11 @@
         <router-link
           v-if="x.ingredient.slug"
           :to="`/ingredients/${x.ingredient.slug.current}`"
+          >{{ x.ingredient.name }}</router-link
         >
-          {{ x.ingredient.name }}
-        </router-link>
       </li>
     </ul>
-
+    <block-content :blocks="recipe.mainbody" />
     <router-link to="/recipes">Tilbake til oppskrifter</router-link>
   </div>
 </template>
@@ -34,6 +33,7 @@ import { client } from "../sanity"
 
 var query = `*[_type == "recipe" && slug.current == $slug][0]{
   title,
+  mainbody,
   ingredients[]{ingredient->{name, unit, slug}, quantity},
   "image": {"url": image.asset->url, "alt": image.alt, "caption": image.caption}
 }`
