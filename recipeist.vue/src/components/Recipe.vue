@@ -12,6 +12,7 @@
     </figure>
 
     <p>Ingredienser:</p>
+
     <section>
       <ul v-if="recipe.ingredients" class="recipe-list">
         <li v-for="(x, i) in recipe.ingredients" :key="i">
@@ -23,7 +24,8 @@
         </li>
       </ul>
     </section>
-    <block-content :blocks="recipe.mainbody" />
+    <block-content v-if="recipe.mainbody" :blocks="recipe.mainbody" />
+
     <router-link to="/recipes">Tilbake til oppskrifter</router-link>
   </div>
 </template>

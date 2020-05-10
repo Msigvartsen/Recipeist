@@ -1,7 +1,9 @@
+import { GoTasklist } from "react-icons/go"
 export default {
   name: "recipe",
   title: "Oppskrift",
   type: "document",
+  icon: GoTasklist,
   fields: [
     { name: "title", type: "string", title: "Tittel" },
     {
@@ -19,9 +21,9 @@ export default {
       of: [{ type: "block" }]
     },
     {
-      name: "cuisinetype",
+      name: "cuisines",
       type: "array",
-      title: "Cuisinetype",
+      title: "Kusiner 😅",
       of: [{ type: "reference", to: [{ type: "cuisine" }] }]
     },
     { name: "slug", type: "slug", title: "Slug", options: { source: "title" } }
