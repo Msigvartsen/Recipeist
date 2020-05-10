@@ -1,6 +1,6 @@
 import React from "react"
 export default {
-  name: "ingredientInstance",
+  name: "ingredientWithQuantity",
   title: "Ingrediens med antall",
   type: "object",
   fields: [

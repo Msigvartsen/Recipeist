@@ -8,7 +8,7 @@ export default {
       name: "ingredients",
       type: "array",
       title: "Ingredienser",
-      of: [{ type: "ingredientInstance" }]
+      of: [{ type: "ingredientWithQuantity" }]
     },
     { name: "mainIntro", type: "text", title: "Oppsummering" },
     { name: "image", type: "mainImage", title: "Hovedbilde" },

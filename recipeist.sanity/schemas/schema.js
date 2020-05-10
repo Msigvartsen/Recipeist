@@ -5,18 +5,13 @@ import siteSettings from "./documents/siteSettings"
 import ingredient from "./documents/ingredient"
 import recipe from "./documents/recipe"
 import cuisine from "./documents/cuisine"
+const documents = [ingredient, recipe, cuisine, siteSettings]
 
 import mainImage from "./objects/mainImage"
-import ingredients from "./objects/ingredients"
+import ingredientWithQuantity from "./objects/ingredientWithQuantity"
+const objects = [mainImage, ingredientWithQuantity]
 
 export default createSchema({
   name: "default",
-  types: schemaTypes.concat([
-    ingredient,
-    ingredients,
-    recipe,
-    mainImage,
-    cuisine,
-    siteSettings
-  ])
+  types: schemaTypes.concat(documents, objects)
 })
