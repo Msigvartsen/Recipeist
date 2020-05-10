@@ -2,6 +2,15 @@
   <div>
     <h1>{{ ingredient.name }}</h1>
     <img :src="ingredient.imageUrl" :alt="ingredient.imageAltText" />
+
+    Brukes i følgende oppskrifter:
+    <ul>
+      <li v-for="(r, i) in recipes" :key="i">
+        <router-link :to="`/recipes/${r.slug.current}`">{{
+          r.title
+        }}</router-link>
+      </li>
+    </ul>
     <router-link to="/ingredients">Tilbake til ingredienser</router-link>
   </div>
 </template>
@@ -9,15 +18,25 @@
 <script>
 import { client } from "../sanity"
 
-var query = '*[_type == "ingredient" && slug.current == $slug][0]'
+const queryIng = '*[_type == "ingredient" && slug.current == $slug][0]'
+const queryRec = `*[_type == "recipe" && references($id)]`
 
 export default {
   data() {
-    return { ingredient: {} }
+    return { ingredient: {}, recipes: [] }
   },
-  mounted() {
-    const params = { slug: this.$route.params.slug }
-    client.fetch(query, params).then(x => (this.ingredient = x))
+  async mounted() {
+    this.ingredient = await client.fetch(queryIng, {
+      slug: this.$route.params.slug
+    })
+    this.recipes = (
+      await client.fetch(queryRec, { id: this.ingredient._id })
+    ).filter(x => !x._id.startsWith("draft"))
   }
 }
 </script>
+<style scoped>
+img {
+  width: 100%;
+}
+</style>
