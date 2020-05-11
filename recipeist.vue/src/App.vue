@@ -28,4 +28,13 @@ export default {
   background-color: pink;
   margin: 0 10%;
 }
+
+#app a {
+  color: black;
+  text-decoration: none;
+}
+#app a:hover {
+  text-decoration: underline;
+  transform: scale(1.01);
+}
 </style>

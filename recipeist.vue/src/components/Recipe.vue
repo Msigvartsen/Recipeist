@@ -16,9 +16,9 @@
     </figure>
 
     <section class="ingredients">
-      <ul v-if="recipe.ingredients" class="recipe-list">
+      <ul v-if="recipe.ingredients">
         <li v-for="(x, i) in recipe.ingredients" :key="i">
-          {{ x.quantity }} {{ x.ingredient.unit }}
+          <div>{{ x.quantity }}  {{ x.ingredient.unit }}</div>
           <router-link
             v-if="x.ingredient.slug"
             :to="`/ingredients/${x.ingredient.slug.current}`"
@@ -76,6 +76,7 @@ export default {
   flex-flow: column wrap;
   align-items: center;
 }
+
 .recipe-image {
   position: relative;
   width: 90%;
@@ -83,14 +84,18 @@ export default {
   align-items: center;
 }
 
-.recipe-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  list-style: none;
+.ingredients {
+  background-color:steelblue;
+  padding: 10px 15px;
+  text-align: left;
 }
-.recipe-list li {
-  color: red;
+ .ingredients ul {
+   list-style: none;
+ }
+
+.ingredients li div {
+  float: left;
+  width: 100px;
 }
 
 ol {
