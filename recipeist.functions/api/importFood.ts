@@ -2,6 +2,7 @@ import { NowRequest, NowResponse } from "@now/node"
 import { client } from "../sanity"
 import { translateText } from "../translate"
 import { searchImages } from "../unsplash"
+import { getSynonym } from "../synonym"
 
 export default async (req: NowRequest, res: NowResponse) => {
   res.setHeader("Access-Control-Allow-Origin", "*")
@@ -21,6 +22,13 @@ export default async (req: NowRequest, res: NowResponse) => {
     translation
   )
 
+  const synonymResponse = await getSynonym(food.name)
+  const synonyms =
+    synonymResponse.synonymLists &&
+    synonymResponse.synonymLists.some(x => x.length > 0)
+      ? synonymResponse.synonymLists.reduce((a, b) => [...a, ...b], [])
+      : []
+
   const doc = {
     _type: "ingredient",
     _id: food.id,
@@ -31,6 +39,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     imageUrl,
     imageAltText,
     translation,
+    synonyms,
     slug: { _type: "slug", current: food.slug },
     foodData: JSON.stringify(food)
   }

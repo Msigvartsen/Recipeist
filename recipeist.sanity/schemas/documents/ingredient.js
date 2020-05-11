@@ -42,6 +42,12 @@ export default {
       title: "Oversettelse"
     },
     {
+      name: "synonyms",
+      type: "array",
+      title: "Synonymer",
+      of: [{ type: "string" }]
+    },
+    {
       name: "slug",
       type: "slug",
       title: "Slug",
