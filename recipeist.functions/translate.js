@@ -1,7 +1,6 @@
 const { Translate } = require("@google-cloud/translate").v2
 const isDev = () => process.env.NODE_ENV === "development"
 process.env.GOOGLE_APPLICATION_CREDENTIALS = isDev() ? "../google.json" : "./google.json" // user-appdata-local-temp-mappa i Windows
-require(process.env.GOOGLE_APPLICATION_CREDENTIALS)
 
 const translateClient = new Translate()
 
