@@ -1,14 +1,14 @@
 <template>
-  <div id="app">
+  <main>
     <Header />
     <router-view />
     <Footer />
-  </div>
+  </main>
 </template>
 
 <script>
-import Header from "./components/Header"
-import Footer from "./components/Footer"
+import Header from "./components/BaseHeader"
+import Footer from "./components/BaseFooter"
 
 export default {
   components: {
@@ -18,23 +18,19 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: pink;
-  margin: 0 10%;
+<style lang="scss" scoped>
+main {
+  font-family: "Press Start 2P", cursive;
+  max-width: 80%;
+  margin: 0 auto;
+
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 }
 
-#app a {
-  color: black;
-  text-decoration: none;
-}
-#app a:hover {
-  text-decoration: underline;
-  transform: scale(1.01);
+.image-caption {
+  font-size: 11px;
+  font-style: italic;
 }
 </style>

@@ -3,11 +3,7 @@
     <h1>{{ recipe.title }}</h1>
 
     <figure v-if="recipe.image" class="image-container">
-      <img
-        :src="recipe.image.url"
-        :alt="recipe.image.alt"
-        class="recipe-image"
-      />
+      <img :src="recipe.image.url" :alt="recipe.image.alt" class="recipe-image" />
       <caption class="image-caption">
         {{
           recipe.image.caption
@@ -15,23 +11,20 @@
       </caption>
     </figure>
 
-    <section class="ingredients">
+    <section class="recipe-ingredients">
       <ul v-if="recipe.ingredients">
         <li v-for="(x, i) in recipe.ingredients" :key="i">
-          <div>{{ x.quantity }}  {{ x.ingredient.unit }}</div>
-          <router-link
-            v-if="x.ingredient.slug"
-            :to="`/ingredients/${x.ingredient.slug.current}`"
-          >
+          <span class="recipe-ingredients-firstcol">{{ x.quantity }} {{ x.ingredient.unit }}</span>
+          <router-link v-if="x.ingredient.slug" :to="`/ingredienser/${x.ingredient.slug.current}`">
             {{ x.ingredient.name }}
           </router-link>
         </li>
       </ul>
     </section>
 
-    <block-content v-if="recipe.mainbody" :blocks="recipe.mainbody" />
+    <block-content v-if="recipe.mainbody" :blocks="recipe.mainbody" className="recipe-main-body" />
 
-    <router-link to="/recipes">Tilbake til oppskrifter</router-link>
+    <router-link to="/oppskrifter" class="recipe-bottom-link">Tilbake til oppskrifter</router-link>
   </div>
 </template>
 
@@ -56,16 +49,38 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scope>
 .recipe {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.image-caption {
-  font-size: 11px;
-  font-style: italic;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+
+  &-ingredients {
+    padding: 10px 15px;
+    text-align: left;
+
+    &-firstcol {
+      display: inline-block;
+      width: 150px;
+    }
+  }
+
+  &-main-body {
+    margin: 25px auto;
+    max-width: 75%;
+  }
+
+  &-bottom-link {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
 }
 
 .image-container {
@@ -84,14 +99,9 @@ export default {
   align-items: center;
 }
 
-.ingredients {
-  background-color:steelblue;
-  padding: 10px 15px;
-  text-align: left;
+.ingredients ul {
+  list-style: none;
 }
- .ingredients ul {
-   list-style: none;
- }
 
 .ingredients li div {
   float: left;

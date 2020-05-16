@@ -1,21 +1,25 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
 
-import Dashboard from "./components/Dashboard.vue"
-import NotFound from "./components/NotFound.vue"
-import RecipeList from "./components/RecipeList.vue"
-import IngredientList from "./components/IngredientList.vue"
+import Dashboard from "./views/Dashboard.vue"
+import NotFound from "./views/NotFound.vue"
+import RecipeList from "./views/RecipeList.vue"
+import IngredientList from "./views/IngredientList.vue"
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: "/", component: Dashboard },
-  { path: "/recipes", component: RecipeList },
-  { path: "/recipes/:id", component: () => import("./components/Recipe.vue") },
-  { path: "/ingredients", component: IngredientList },
+  { path: "/oppskrifter", component: RecipeList },
+  { path: "/oppskrifter/:id", component: () => import("./views/Recipe.vue") },
+  { path: "/ingredienser", component: IngredientList },
   {
-    path: "/ingredients/:slug",
-    component: () => import("./components/Ingredient.vue")
+    path: "/ingredienser/:slug",
+    component: () => import("./views/Ingredient.vue")
+  },
+  {
+    path: "/random",
+    component: () => import("./views/Random.vue")
   },
   { path: "*", component: NotFound }
 ]

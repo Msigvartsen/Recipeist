@@ -1,0 +1,56 @@
+<template>
+  <div class="ingredient">
+    <h1>{{ ingredient.name }}</h1>
+
+    <img class="ingredient-main-image" :src="ingredient.imageUrl" :alt="ingredient.imageAltText" />
+
+    <div class="nes-container with-title">
+      <p class="title">Brukes i følgende oppskrifter</p>
+      <div class="lists">
+        <ul class="nes-list is-circle">
+          <li v-for="(r, i) in recipes" :key="i">
+            <router-link v-if="r.slug" :to="`/oppskrifter/${r.slug.current}`">{{ r.title }}</router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <router-link to="/ingredienser" class="ingredient-bottom-link">Tilbake til ingredienser</router-link>
+  </div>
+</template>
+
+<script>
+import { client } from "../sanity"
+
+const queryIng = '*[_type == "ingredient" && slug.current == $slug][0]'
+const queryRec = `*[_type == "recipe" && references($id)]`
+
+export default {
+  data() {
+    return { ingredient: {}, recipes: [] }
+  },
+  async mounted() {
+    this.ingredient = await client.fetch(queryIng, {
+      slug: this.$route.params.slug
+    })
+    this.recipes = (await client.fetch(queryRec, { id: this.ingredient._id })).filter(x => !x._id.startsWith("draft"))
+  }
+}
+</script>
+<style scoped>
+.ingredient-main-image {
+  width: 75%;
+  display: block;
+  margin: 20px auto 40px;
+}
+
+.ingredient-bottom-link {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+</style>

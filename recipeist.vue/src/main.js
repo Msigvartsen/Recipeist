@@ -2,6 +2,7 @@ import Vue from "vue"
 import App from "./App.vue"
 import { router } from "./router"
 import BlockContent from "sanity-blocks-vue-component"
+import "nes.css/css/nes.min.css"
 
 Vue.component("block-content", BlockContent)
 
