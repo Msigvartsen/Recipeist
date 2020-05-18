@@ -1,9 +1,13 @@
 <template>
   <div class="dashboard">
-    <img class="dashboard-main-image" :src="siteSettings.imageUrl" :alt="siteSettings.alt" />
+    <img
+      class="dashboard-main-image"
+      :src="`${siteSettings.imageUrl}?w=${$el ? $el.clientWidth : 0}`"
+      :alt="siteSettings.alt"
+    />
 
-    <div class="dashboard-recipes nes-container with-title">
-      <p class="title">Nyeste oppskrifter</p>
+    <div class="dashboard-recipes base-container nes-container with-title">
+      <p class="title">Nye oppskrifter</p>
       <div class="lists">
         <ul class="nes-list is-circle">
           <li v-for="(r, i) in recipes" :key="i">
@@ -38,13 +42,22 @@ export default {
 <style lang="scss" scoped>
 .dashboard {
   &-main-image {
-    width: 75%;
-    display: block;
-    margin: 20px auto 40px;
+    @media (min-width: 600px) {
+      width: 75%;
+      display: block;
+      margin: 20px auto 40px;
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   &-recipes {
-    margin-bottom: 40px;
+    @media (min-width: 600px) {
+      margin-bottom: 40px;
+    }
+    @media (max-width: 600px) {
+    }
   }
 
   h1 {

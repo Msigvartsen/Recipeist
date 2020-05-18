@@ -1,5 +1,5 @@
 <template>
-  <header class="nes-container with-title is-centered">
+  <header class="base-container nes-container with-title is-centered">
     <h1>
       <i class="nes-icon is-large star"></i>
       <router-link to="/">
@@ -30,15 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-  margin: 30px 0;
-
-  @media (max-width: 600px) {
-    margin-top: 0;
-  }
-}
-
-header h1 {
+h1 {
   margin-bottom: 20px;
   font-size: 3em;
 

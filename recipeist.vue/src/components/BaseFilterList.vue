@@ -1,5 +1,5 @@
 <template>
-  <nav class="base-filter">
+  <nav class="base-filter base-container">
     <div class="nes-field base-filter-options">
       <label class="base-filter-search-label" for="query_field">Søk</label>
       <label class="base-filter-checkbox-label">
@@ -81,7 +81,8 @@ export default {
 
 <style lang="scss" scoped>
 .base-filter {
-  margin: 25px 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
 
   &-results {
     margin-top: 20px;

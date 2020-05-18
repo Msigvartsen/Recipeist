@@ -4,7 +4,7 @@
 
     <img class="ingredient-main-image" :src="ingredient.imageUrl" :alt="ingredient.imageAltText" />
 
-    <div class="nes-container with-title">
+    <div class="base-container nes-container with-title">
       <p class="title">Brukes i følgende oppskrifter</p>
       <div class="lists">
         <ul class="nes-list is-circle">
@@ -37,20 +37,28 @@ export default {
   }
 }
 </script>
-<style scoped>
-.ingredient-main-image {
-  width: 75%;
-  display: block;
-  margin: 20px auto 40px;
-}
+<style lang="scss" scoped>
+.ingredient {
+  margin-top: 20px;
+  &-main-image {
+    @media (min-width: 600px) {
+      width: 75%;
+      display: block;
+      margin: 20px auto 40px;
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
 
-.ingredient-bottom-link {
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-}
+  &-bottom-link {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+  }
 
-h1 {
-  text-align: center;
+  h1 {
+    text-align: center;
+  }
 }
 </style>

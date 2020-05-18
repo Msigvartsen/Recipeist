@@ -2,8 +2,8 @@
   <div class="recipe">
     <h1>{{ recipe.title }}</h1>
 
-    <figure v-if="recipe.image" class="image-container">
-      <img :src="recipe.image.url" :alt="recipe.image.alt" class="recipe-image" />
+    <figure v-if="recipe.image">
+      <img :src="recipe.image.url" :alt="recipe.image.alt" class="recipe-main-image" />
       <caption class="image-caption">
         {{
           recipe.image.caption
@@ -51,11 +51,7 @@ export default {
 
 <style lang="scss" scope>
 .recipe {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-
+  margin-top: 20px;
   &-ingredients {
     padding: 10px 15px;
     text-align: left;
@@ -77,26 +73,21 @@ export default {
     text-align: center;
   }
 
+  &-main-image {
+    @media (min-width: 600px) {
+      width: 75%;
+      display: block;
+      margin: 20px auto 40px;
+    }
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+
   h1 {
     margin-bottom: 1.5rem;
     text-align: center;
   }
-}
-
-.image-container {
-  width: 100%;
-  height: auto;
-  position: relative;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-}
-
-.recipe-image {
-  position: relative;
-  width: 90%;
-  height: auto;
-  align-items: center;
 }
 
 .ingredients ul {
