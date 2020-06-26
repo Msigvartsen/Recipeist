@@ -14,14 +14,14 @@
         </ul>
       </div>
     </div>
-  <button @click="add('test', '2')">Legg i handleliste</button >
+    <button @click="add('test', '2')">Legg i handleliste</button>
     <router-link to="/ingredienser" class="ingredient-bottom-link">Tilbake til ingredienser</router-link>
   </div>
 </template>
 
 <script>
 import { client } from "../sanity"
-import {addToList} from"../ShoppingList"
+import { addToList } from "../ShoppingList"
 const queryIng = '*[_type == "ingredient" && slug.current == $slug][0]'
 const queryRec = `*[_type == "recipe" && references($id)]`
 
@@ -36,25 +36,9 @@ export default {
     this.recipes = (await client.fetch(queryRec, { id: this.ingredient._id })).filter(x => !x._id.startsWith("draft"))
   },
   methods: {
-    add: function(product, quantity) {
-      addToList(product, quantity)
-    }
-    // addToList: function(product, quantity) {
-    //   let items = JSON.parse(localStorage.getItem("user"));
-    //   console.log(items);
-    //   items.products.push({product: product, quantity: quantity});
-    //   localStorage.removeItem("user");
-    //   localStorage.setItem("user", JSON.stringify(items));
-    }
+    add: (product, quantity) => addToList(product, quantity)
   }
-
-
-// function addToList(product, quantity) {
-//     let items = JSON.parse(localStorage.getItem("user"));
-//     items.products.push({product: product, quantity: quantity});
-//     localStorage.setItem("user", JSON.stringify(items));
-// }
-
+}
 </script>
 <style lang="scss" scoped>
 .ingredient {

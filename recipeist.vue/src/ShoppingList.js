@@ -32,3 +32,7 @@ export const getProductsInList = () => {
   let products = JSON.parse(localStorage.getItem("user")).products
   return products
 }
+
+export const clearShoppingList = () => {
+  localStorage.removeItem("user");
+}
