@@ -14,14 +14,16 @@
         </ul>
       </div>
     </div>
-    <button @click="add('test', '2')">Legg i handleliste</button>
+    <button @click="add(ingredient.name, 1)">Legg i handleliste</button>
+    <span>{{getQuantity(ingredient.name)}}</span>
+    <button @click="remove(ingredient.name, 1)">Fjern fra handleliste</button>
     <router-link to="/ingredienser" class="ingredient-bottom-link">Tilbake til ingredienser</router-link>
   </div>
 </template>
 
 <script>
 import { client } from "../sanity"
-import { addToList } from "../ShoppingList"
+import { addToList, removeFromList, getListItemQuantity, decrementProductQuantity } from "../ShoppingList"
 const queryIng = '*[_type == "ingredient" && slug.current == $slug][0]'
 const queryRec = `*[_type == "recipe" && references($id)]`
 
@@ -36,7 +38,9 @@ export default {
     this.recipes = (await client.fetch(queryRec, { id: this.ingredient._id })).filter(x => !x._id.startsWith("draft"))
   },
   methods: {
-    add: (product, quantity) => addToList(product, quantity)
+    add: (product, quantity) => addToList(product, quantity),
+    remove: (product) => decrementProductQuantity(product),
+    getQuantity: (product) => getListItemQuantity(product)
   }
 }
 </script>

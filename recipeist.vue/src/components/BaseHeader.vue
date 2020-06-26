@@ -11,6 +11,7 @@
       <router-link class="nes-btn is-success" to="/oppskrifter">Oppskrifter</router-link>
       <router-link class="nes-btn is-warning" to="/ingredienser">Ingredienser</router-link>
       <router-link class="nes-btn is-error" to="/random">Tilfeldig oppskrift</router-link>
+      <router-link class="nes-btn is-primary" to="/shoppinglist">Handleliste</router-link>
     </nav>
   </header>
 </template>
