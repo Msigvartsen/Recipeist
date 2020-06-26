@@ -5,6 +5,7 @@ import Dashboard from "./views/Dashboard.vue"
 import NotFound from "./views/NotFound.vue"
 import RecipeList from "./views/RecipeList.vue"
 import IngredientList from "./views/IngredientList.vue"
+import ShoppingList from "./views/ShoppingList.vue"
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,7 @@ const routes = [
     path: "/random",
     component: () => import("./views/Random.vue")
   },
+  {path: "/shoppinglist", component: ShoppingList},
   { path: "*", component: NotFound }
 ]
 
