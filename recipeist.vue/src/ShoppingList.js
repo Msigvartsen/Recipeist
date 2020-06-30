@@ -1,29 +1,31 @@
 // Må refaktoriseres ganske masse :) Renaming etc.. feks localstorage key fra "User" til "products".
 //lage egne funksjoner som håndterer henting/parsing av objektet etc.
 
+const localStorageKey = "shoppingList"
+
 export const addToList = productToAdd => {
-  let container = JSON.parse(localStorage.getItem("user"))
+  let container = getShoppingList()
 
   if (container == undefined || container == null) {
-    let products = [{ product: productToAdd, quantity: 1 }]
-    localStorage.setItem("user", JSON.stringify(products))
+    container = [{ product: productToAdd, quantity: 1 }]
+    updateShoppingList(container)
     return
   }
 
   for (let product in container) {
     if (container[product].product == productToAdd) {
       container[product].quantity++
-      localStorage.setItem("user", JSON.stringify(container))
+      updateShoppingList(container)
       return
     }
   }
 
   container.push({ product: productToAdd, quantity: 1 })
-  localStorage.setItem("user", JSON.stringify(container))
+  updateShoppingList(container)
 }
 
 export const decrementProductQuantity = productName => {
-  let container = JSON.parse(localStorage.getItem("user"))
+  let container = getShoppingList()
   let index = findProductIndex(productName)
   if (index < 0) {
     return
@@ -35,29 +37,25 @@ export const decrementProductQuantity = productName => {
   } else {
     container.splice(index, 1)
   }
-  localStorage.setItem("user", JSON.stringify(container))
+  updateShoppingList(container)
 }
 
 export const removeItem = productName => {
-  let container = JSON.parse(localStorage.getItem("user"))
+  let container = getShoppingList()
   let index = findProductIndex(productName)
   if (index < 0) {
     return
   }
   container.splice(index, 1)
-  localStorage.setItem("user", JSON.stringify(container))
-}
-
-export const getProducts = () => {
-  return JSON.parse(localStorage.getItem("user"))
+  updateShoppingList(container)
 }
 
 export const clearShoppingList = () => {
-  localStorage.removeItem("user")
+  localStorage.removeItem(localStorageKey)
 }
 
 export const getListItemQuantity = productToFind => {
-  let container = JSON.parse(localStorage.getItem("user"))
+  let container = getShoppingList()
   let index = findProductIndex(productToFind)
   if (index < 0) {
     return
@@ -67,8 +65,16 @@ export const getListItemQuantity = productToFind => {
   return product.quantity > 0 ? product.quantity : 0
 }
 
+export const getShoppingList = () => {
+  return JSON.parse(localStorage.getItem(localStorageKey))
+}
+
+const updateShoppingList = container => {
+  localStorage.setItem(localStorageKey, JSON.stringify(container))
+}
+
 const findProductIndex = productToFind => {
-  let container = JSON.parse(localStorage.getItem("user"))
+  let container = getShoppingList()
   for (let product in container) {
     if (container[product].product == productToFind) {
       return product

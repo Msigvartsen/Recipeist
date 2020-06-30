@@ -20,7 +20,7 @@ export default {
     return { list: [] }
   },
   async mounted() {
-    this.list = listFunctions.getProducts()
+    this.list = listFunctions.getShoppingList()
   },
   methods: {
     clearList: () => listFunctions.clearShoppingList(),
