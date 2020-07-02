@@ -14,33 +14,49 @@
         </ul>
       </div>
     </div>
-    <button @click="add(ingredient.name, 1)">Legg i handleliste</button>
-    <span>{{getQuantity(ingredient.name)}}</span>
-    <button @click="remove(ingredient.name, 1)">Fjern fra handleliste</button>
+    Legg i handleliste:
+    <button @click="add(ingredient.name)">+</button>
+    <span>{{ itemCount }}</span>
+    <button @click="decrement(ingredient.name)">-</button>
+    <button @click="remove(ingredient.name)">Slett</button>
     <router-link to="/ingredienser" class="ingredient-bottom-link">Tilbake til ingredienser</router-link>
   </div>
 </template>
 
 <script>
 import { client } from "../sanity"
-import { addToList, removeFromList, getListItemQuantity, decrementProductQuantity } from "../ShoppingList"
+import * as listFunctions from "../ShoppingList"
 const queryIng = '*[_type == "ingredient" && slug.current == $slug][0]'
 const queryRec = `*[_type == "recipe" && references($id)]`
 
 export default {
   data() {
-    return { ingredient: {}, recipes: [] }
+    return { ingredient: {}, recipes: [], itemCount: Number }
   },
   async mounted() {
     this.ingredient = await client.fetch(queryIng, {
       slug: this.$route.params.slug
     })
     this.recipes = (await client.fetch(queryRec, { id: this.ingredient._id })).filter(x => !x._id.startsWith("draft"))
+    this.itemCount = this.getQuantity(this.ingredient.name)
   },
   methods: {
-    add: (product, quantity) => addToList(product, quantity),
-    remove: (product) => decrementProductQuantity(product),
-    getQuantity: (product) => getListItemQuantity(product)
+    add: function (product) {
+      listFunctions.addToList(product)
+      this.itemCount = this.getQuantity(product)
+    },
+    decrement: function (product) {
+      listFunctions.decrementProductQuantity(product)
+      this.itemCount = this.getQuantity(product)
+    },
+    remove: function () {
+      listFunctions.clearShoppingList()
+      this.itemCount = 0
+    },
+    getQuantity: function (product) {
+      let itemCount = listFunctions.getListItemQuantity(product)
+      return itemCount != null ? itemCount : 0
+    }
   }
 }
 </script>
